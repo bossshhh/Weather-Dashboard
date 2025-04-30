@@ -1,6 +1,7 @@
 import requests
 import json
 
+
 # Function to fetch weather data from the API
 def get_weather(city_name, api_key):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
@@ -94,7 +95,7 @@ def remove_log():
             print("Search history has been cleared.\n")
         elif option == '2':  # Remove a specific city
             city_to_remove = input("Enter the city name to remove: ").lower()
-            with open(log_file, "r") as file:
+            with open(log_file, "r") as file: # Open in read mode to check existing entries
                 lines = file.readlines()
             with open(log_file, "w") as file:  # Rewrite the file without the specified city
                 found = False
@@ -133,7 +134,7 @@ def weather_dashboard():
             break
         elif city == 'history':  # View search history
             view_log()
-            continue
+            #continue
         elif city == 'remove':  # Remove specific city from history
             remove_log()
             continue  # Skip the rest of the loop and prompt for input again
@@ -152,10 +153,17 @@ def weather_dashboard():
 weather_dashboard()
 """"
 tmw we are adding: 
+error handling for "space"
 Add Timestamps to Logged Entries
 Search History Filters
 Weather Forecasts
 Data Visualization
 
 then at the end we will make GUI so it looks good 
+
+
+
+Fast API
+PostgresSQL
+
 """
