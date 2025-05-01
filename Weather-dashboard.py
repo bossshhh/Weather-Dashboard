@@ -87,14 +87,14 @@ def remove_log():
     log_file = "weather_log.json"  # File to store weather queries
     try:
         print("Remove Options:\n1. Clear entire history\n2. Remove a specific city")
-        option = input("Enter 1 to clear history or 2 to remove a specific city: ")
+        option = input("Enter 1 to clear history or 2 to remove a specific city: ").strip()
 
         if option == '1':  # Clear entire history
             with open(log_file, "w") as file:  # Open in write mode to overwrite file
                 pass  # Creates an empty file
             print("Search history has been cleared.\n")
         elif option == '2':  # Remove a specific city
-            city_to_remove = input("Enter the city name to remove: ").lower()
+            city_to_remove = input("Enter the city name to remove: ").lower().strip()
             with open(log_file, "r") as file: # Open in read mode to check existing entries
                 lines = file.readlines()
             with open(log_file, "w") as file:  # Rewrite the file without the specified city
@@ -126,7 +126,7 @@ def weather_dashboard():
     while True:
         # Prompt user for city name or exit
         city = input("Enter city name, type 'history' to view search history, type 'remove' to manage log,"
-                     " or type 'exit' to close program: ").lower()
+                     " or type 'exit' to close program: ").lower().strip()
 
         if city == 'exit':  # Exit the program
             print("Exiting the program. Goodbye!")
@@ -134,7 +134,7 @@ def weather_dashboard():
             break
         elif city == 'history':  # View search history
             view_log()
-            #continue
+            continue
         elif city == 'remove':  # Remove specific city from history
             remove_log()
             continue  # Skip the rest of the loop and prompt for input again
