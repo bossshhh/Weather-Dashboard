@@ -1,5 +1,10 @@
 import requests
 import json
+from datetime import datetime
+
+# Function to get the current timestamp
+def get_timestamp():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")  # Formatting the timestamp
 
 # Function to fetch weather data from the API
 def get_weather(city_name, api_key):
@@ -21,12 +26,13 @@ def get_weather(city_name, api_key):
         humidity = weather_data["main"]["humidity"]
         description = weather_data["weather"][0]["description"]
 
-        # Create a dictionary to store the query data
+        # Create a dictionary to store the query data, including timestamp
         weather_info = {
             "city": city,
             "temperature": temperature,
             "humidity": humidity,
-            "description": description
+            "description": description,
+            "timestamp": get_timestamp()  # Add timestamp to log
         }
 
         # Append the weather data to the log file
@@ -49,7 +55,8 @@ def append_to_log(weather_info):
     log_file = "weather_log.json"  # File to store weather queries
     try:
         with open(log_file, 'a') as file:  # Open the file in append mode
-            file.write(json.dumps(weather_info) + "\n")  # Write JSON data as a new line
+            json.dump(weather_info, file)  # Write JSON data as a new line
+            file.write("\n")  # Separate entries for readability
             print(f"DEBUG: Appended weather info to log file: {weather_info}")  # Debug message
     except Exception as e:
         print(f"Error writing to log file: {e}")
@@ -58,19 +65,18 @@ def append_to_log(weather_info):
 def view_log():
     log_file = "weather_log.json"  # File to store weather queries
     try:
-        # Open the log file in read mode
-        with open(log_file, "r") as file:
+        with open(log_file, "r") as log_file:
             print("\nSearch History:")
             empty = True  # Flag to check if the log file is empty
-            for line in file:
+            for line in log_file:
                 line = line.strip()
                 if not line:  # Skip blank lines
                     continue
                 try:
                     # Parse each line as JSON and display it
                     weather_data = json.loads(line)
-                    print(f"City: {weather_data['city']}, Temperature: {weather_data['temperature']}°C, "
-                          f"Humidity: {weather_data['humidity']}%, Description: {weather_data['description']}")
+                    timestamp = weather_data.get("timestamp", "Unknown Timestamp")  # Handle missing timestamps gracefully
+                    print(f"City: {weather_data['city']}, Last Checked: {timestamp}")
                     empty = False
                 except json.JSONDecodeError:
                     print(f"Skipped invalid entry: {line}")
@@ -82,6 +88,7 @@ def view_log():
     except Exception as e:
         print(f"Error while reading search history: {e}\n")
 
+# Function to remove entries from the log
 def remove_log():
     log_file = "weather_log.json"  # File to store weather queries
     try:
@@ -94,7 +101,7 @@ def remove_log():
             print("Search history has been cleared.\n")
         elif option == '2':  # Remove a specific city
             city_to_remove = input("Enter the city name to remove: ").lower().strip()
-            with open(log_file, "r") as file: # Open in read mode to check existing entries
+            with open(log_file, "r") as file:  # Open in read mode to check existing entries
                 lines = file.readlines()
             with open(log_file, "w") as file:  # Rewrite the file without the specified city
                 found = False
@@ -120,7 +127,7 @@ def remove_log():
 
 # Main weather dashboard function
 def weather_dashboard():
-    api_key = "1e19f423cd89d66fdaa96c14da53e43b"  # Your OpenWeatherMap API key
+    api_key = "1e19f423cd89d66fdaa96c14da53e43b"  # Replace with your actual OpenWeatherMap API key
 
     while True:
         # Prompt user for city name or exit
@@ -150,11 +157,13 @@ def weather_dashboard():
 
 # Start the program
 weather_dashboard()
+
 """"
 tmw we are adding: 
 timestamps by creating a function 
 adding weather forecast
 adding a database to store the data
+
 
 
 Fast API
