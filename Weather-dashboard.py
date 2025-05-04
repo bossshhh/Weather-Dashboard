@@ -1,7 +1,6 @@
 import requests
 import json
 
-
 # Function to fetch weather data from the API
 def get_weather(city_name, api_key):
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
@@ -153,17 +152,9 @@ def weather_dashboard():
 weather_dashboard()
 """"
 tmw we are adding: 
-error handling for "space"
-Add Timestamps to Logged Entries
-Search History Filters
-Weather Forecasts
-Data Visualization
-
 then at the end we will make GUI so it looks good 
-
 
 
 Fast API
 PostgresSQL
-
 """
