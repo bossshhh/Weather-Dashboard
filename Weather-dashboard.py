@@ -152,7 +152,9 @@ def weather_dashboard():
 weather_dashboard()
 """"
 tmw we are adding: 
-then at the end we will make GUI so it looks good 
+timestamps by creating a function 
+adding weather forecast
+adding a database to store the data
 
 
 Fast API
