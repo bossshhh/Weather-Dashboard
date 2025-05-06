@@ -71,7 +71,7 @@ def view_log():
             for line in log_file:
                 line = line.strip()
                 if not line:  # Skip blank lines
-                    continue
+                 continue
                 try:
                     # Parse each line as JSON and display it
                     weather_data = json.loads(line)
@@ -137,7 +137,7 @@ def weather_dashboard():
         if city == 'exit':  # Exit the program
             print("Exiting the program. Goodbye!")
             print(f"DEBUG: User input was '{city}'")  # Debug message
-            break
+            continue
         elif city == 'history':  # View search history
             view_log()
             continue
@@ -156,11 +156,10 @@ def weather_dashboard():
             print("Weather data could not be retrieved.\n")
 
 # Start the program
-weather_dashboard()
+weather_dashboard() # Main function call
 
 """"
 tmw we are adding: 
-timestamps by creating a function 
 adding weather forecast
 adding a database to store the data
 

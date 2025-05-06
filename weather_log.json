@@ -1,2 +1,8 @@
-{"city": "Florida", "temperature": 19.44, "humidity": 97, "description": "thunderstorm with heavy rain", "timestamp": "2025-05-04 14:41:15"}
 {"city": "Tokyo", "temperature": 17.06, "humidity": 66, "description": "broken clouds", "timestamp": "2025-05-04 14:41:18"}
+{"city": "Ramallah", "temperature": 24.21, "humidity": 30, "description": "broken clouds", "timestamp": "2025-05-06 14:26:05"}
+{"city": "Tokyo", "temperature": 13.65, "humidity": 93, "description": "broken clouds", "timestamp": "2025-05-06 14:30:43"}
+{"city": "Ramallah", "temperature": 24.21, "humidity": 30, "description": "broken clouds", "timestamp": "2025-05-06 14:32:23"}
+{"city": "Istanbul", "temperature": 18.46, "humidity": 53, "description": "clear sky", "timestamp": "2025-05-06 14:33:50"}
+{"city": "Tokyo", "temperature": 13.65, "humidity": 92, "description": "mist", "timestamp": "2025-05-06 14:34:36"}
+{"city": "Tokyo", "temperature": 13.65, "humidity": 92, "description": "mist", "timestamp": "2025-05-06 14:34:52"}
+{"city": "Florida", "temperature": 17.98, "humidity": 94, "description": "clear sky", "timestamp": "2025-05-06 14:35:47"}
